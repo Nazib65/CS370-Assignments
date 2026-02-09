@@ -17,7 +17,7 @@ services:
       - ${SSH_AUTH_SOCK:-/dev/null}:/ssh-agent
     working_dir: ${WORKSPACE_DIR:-/workspaces/eng-ai-agents}
     environment:
-      - PATH=${WORKSPACE_DIR:-/workspaces/eng-ai-agents}/.venv/bin:$PATH
+      - PATH=${WORKSPACE_DIR:-/workspaces/eng-ai-agents}/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       - PYTHONPATH=${WORKSPACE_DIR:-/workspaces/eng-ai-agents}
       - VIRTUAL_ENV=${WORKSPACE_DIR:-/workspaces/eng-ai-agents}/.venv
       - UV_CACHE_DIR=/home/${WORKSPACE_USER:-vscode}/.uv-cache
@@ -26,16 +26,9 @@ services:
     env_file:
       - path: .env
         required: true
-    command:  bash -c "tail -f /dev/null"
+    command: ["/bin/sh", "-lc", "tail -f /dev/null"]
     stdin_open: true
     tty: true
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
     networks:
       - ai-agents-network
   ros.dev.gpu: 
@@ -64,7 +57,7 @@ services:
        - /dev/input/:/dev/input/
     working_dir: ${WORKSPACE_DIR:-/workspaces/eng-ai-agents}
     environment:
-      - PATH=${WORKSPACE_DIR:-/workspaces/eng-ai-agents}/.venv/bin:$PATH
+      - PATH=${WORKSPACE_DIR:-/workspaces/eng-ai-agents}/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       - PYTHONPATH=${WORKSPACE_DIR:-/workspaces/eng-ai-agents}
       - VIRTUAL_ENV=${WORKSPACE_DIR:-/workspaces/eng-ai-agents}/.venv
       - UV_CACHE_DIR=/home/${WORKSPACE_USER:-vscode}/.uv-cache
@@ -72,12 +65,10 @@ services:
       - ROS_DISTRO=${ROS_DISTRO:-jazzy}
       - DISPLAY=${DISPLAY}
       - SSH_AUTH_SOCK=/ssh-agent
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=all
     env_file:
       - path: .env
         required: true
-    command: bash -c "tail -f /dev/null"
+    command: ["/bin/sh", "-lc", "tail -f /dev/null"]
     stdin_open: true
     tty: true
     privileged: true
@@ -88,13 +79,6 @@ services:
     security_opt:
       - seccomp:unconfined
       - apparmor:unconfined
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
     networks:
       - ai-agents-network
   # ##########
