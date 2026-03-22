@@ -162,6 +162,8 @@ cython_debug/
 docs/_site/
 docs/_book/
 data/
+!assignments/assignments-3/data/
+!assignments/assignments-3/data/**
 
 logs/
 *.log
@@ -170,6 +172,7 @@ outputs/
 save/
 datafiles/
 *.parquet
+!assignments/assignments-3/data/*.parquet
 
 runs/
 
