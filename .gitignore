@@ -184,3 +184,7 @@ datasets/*
 install/
 log/
 .colcon/
+
+# Large local media files (keep out of git/GitHub push)
+assignments/assignment-2/input_video.mp4
+assignments/assignment-2/clip_120_165.mp4

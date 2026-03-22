@@ -1,0 +1,6 @@
+names:
+- drone
+nc: 1
+path: /workspaces/eng-ai-agents/assignments/assignments-3/models/drone_finetune_data
+train: images/train
+val: images/val

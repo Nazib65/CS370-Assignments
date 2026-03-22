@@ -1,3 +1,7 @@
-Assignment name: low_rank_gaussians_1.ioynb
-Submission date: 2/8/2026
-Run: The output is already there
+Assignment name: Image-to-Video Semantic Retrieval via Object Detection
+
+Submission date: 2/21/2026
+
+Run: You can see my output on imgToVid_obj_detec.ipynb
+
+Report: I added the report.md 
